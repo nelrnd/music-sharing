@@ -12,9 +12,11 @@ const MONGODB = process.env.MONGODB_URI
 const main = async () => mongoose.connect(MONGODB)
 main().catch(() => console.log("error connecting to db"))
 
-app.get("/", (req, res) => {
-  res.send("Hello World!")
-})
+// use routers
+const pageRouter = require("./routes/page")
+const userRouter = require("./routes/user")
+app.use("/api/page", pageRouter)
+app.use("/api/user", userRouter)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`server running at http://localhost:${PORT}`))
