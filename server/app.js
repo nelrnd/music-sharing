@@ -1,9 +1,16 @@
+require("dotenv").config()
 const express = require("express")
+const mongoose = require("mongoose")
 
 const app = express()
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+// connect to db
+const MONGODB = process.env.MONGODB_URI
+const main = async () => mongoose.connect(MONGODB)
+main().catch(() => console.log("error connecting to db"))
 
 app.get("/", (req, res) => {
   res.send("Hello World!")
