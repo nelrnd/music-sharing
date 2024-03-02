@@ -41,11 +41,11 @@ export default function Login() {
   }, [user, navigate])
 
   return (
-    <div>
+    <div className="w-[24rem] max-w-full m-auto px-4 py-8 space-y-8">
       <h1 className="font-bold text-4xl tracking-tighter">Login</h1>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <FormField
             control={form.control}
             name="email"
@@ -74,12 +74,15 @@ export default function Login() {
             )}
           />
 
-          <Button>Log in</Button>
+          <Button className="mt-2">Log in</Button>
         </form>
       </Form>
 
       <p>
-        Don't have an account yet? <Link to="/register">Register</Link>
+        Don't have an account yet?{" "}
+        <Link to="/register" className="text-blue-600 hover:underline">
+          Register
+        </Link>
       </p>
     </div>
   )
