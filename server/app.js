@@ -1,11 +1,13 @@
 require("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 const app = express()
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cors())
 
 // connect to db
 const MONGODB = process.env.MONGODB_URI
