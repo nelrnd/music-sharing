@@ -14,7 +14,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }
 
   useEffect(() => {
-    console.log(user)
     if (user && user.token) {
       axios.defaults.headers.common["x-access-token"] = user.token
       localStorage.setItem("user", JSON.stringify(user))

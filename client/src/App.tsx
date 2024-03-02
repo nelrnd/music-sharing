@@ -5,6 +5,8 @@ import Login from "./routes/Login"
 import AuthProvider from "./providers/AuthProvider"
 import Dashboard from "./routes/Dashboard"
 import AuthRoute from "./routes/AuthRoute"
+import CreateForm from "./routes/CreateForm"
+import Settings from "./routes/Settings"
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/page/create",
+        element: <CreateForm />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },
