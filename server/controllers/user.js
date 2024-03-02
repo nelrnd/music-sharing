@@ -37,6 +37,14 @@ exports.user_login = async (req, res) => {
   res.json({ message: "Login successful", user: { ...payload, token } })
 }
 
+exports.user_get_pages = async (req, res) => {
+  const { id } = req.params
+
+  const pages = await Page.find({ from_user: id }).exec()
+
+  return res.json(pages)
+}
+
 exports.user_update = async (req, res) => {
   const { id } = req.params
 
@@ -71,7 +79,7 @@ exports.user_delete = async (req, res) => {
   res.json(deletedUser)
 }
 
-exports.user_is_auth = async (req, res, next) => {
+exports.user_is_auth = user_is_auth = async (req, res, next) => {
   const token = req.headers["x-access-token"]
   if (!token) {
     return res.status(401).json({ error: "Not token provided" })
@@ -85,3 +93,18 @@ exports.user_is_auth = async (req, res, next) => {
     next()
   })
 }
+
+exports.user_is_same = [
+  user_is_auth,
+  async (req, res, next) => {
+    const { id } = req.params // page id
+
+    const page = await Page.findById(id).exec()
+
+    if (page.from_user !== req.user.id) {
+      return res.status(401).json({ error: "Unauthorized" })
+    }
+
+    next()
+  },
+]

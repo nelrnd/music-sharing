@@ -19,7 +19,7 @@ exports.page_create = async (req, res) => {
     type: req.body.type,
     image_url: req.body.image_url,
     links: req.body.links,
-    from_user: req.body.from_user,
+    from_user: req.user.id,
   })
 
   await page.save()
@@ -38,7 +38,7 @@ exports.page_update = async (req, res) => {
       type: req.body.type,
       image_url: req.body.image_url,
       links: req.body.links,
-      from_user: req.body.from_user,
+      from_user: req.user.id,
     },
     { new: true }
   ).exec()
