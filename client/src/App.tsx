@@ -7,6 +7,7 @@ import Dashboard from "./routes/Dashboard"
 import AuthRoute from "./routes/AuthRoute"
 import CreateForm from "./routes/CreateForm"
 import Settings from "./routes/Settings"
+import Display, { loader as displayLoader } from "./routes/Display"
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/music/:id",
+    element: <Display />,
+    loader: displayLoader,
   },
   {
     element: <AuthRoute />,

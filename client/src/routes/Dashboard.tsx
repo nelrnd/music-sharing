@@ -53,7 +53,11 @@ function PagesSection() {
       <h2 className="font-bold text-xl tracking-tighter">My pages</h2>
 
       {pages.length > 0 ? (
-        pages.map((page) => <p>{page.name}</p>)
+        pages.map((page) => (
+          <Link key={page._id} to={`/music/${page._id}`}>
+            {page.name}
+          </Link>
+        ))
       ) : (
         <p className="text-gray-600">No pages here for now...</p>
       )}
